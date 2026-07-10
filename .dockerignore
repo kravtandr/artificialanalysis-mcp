@@ -1,0 +1,19 @@
+# Секреты — никогда не должны попадать в build context
+.env
+.env.*
+!.env.example
+
+# Не нужны для сборки
+.git
+.github
+node_modules
+dist
+coverage
+tests
+*.log
+.DS_Store
+Dockerfile
+.dockerignore
+AGENTS.md
+SPEC.md
+README.md
