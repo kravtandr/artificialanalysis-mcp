@@ -1,0 +1,56 @@
+{
+  "name": "artificialanalysis-mcp",
+  "version": "0.1.0",
+  "description": "Unofficial MCP server for the Artificial Analysis Data API v2: find, compare and rank AI models (LLMs, image, video, speech, music) by benchmarks, price and speed. Not affiliated with Artificial Analysis.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kravtandr/artificialanalysis-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "artificial-analysis",
+    "llm",
+    "benchmarks",
+    "ai-models"
+  ],
+  "bin": {
+    "artificialanalysis-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "smoke": "node scripts/smoke.mjs",
+    "generate:types": "openapi-typescript artificial-analysis-openapi.yaml -o src/api/types.gen.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vitest/coverage-v8": "^3.2.0",
+    "eslint": "^9.30.0",
+    "eslint-config-prettier": "^10.1.0",
+    "openapi-typescript": "^7.8.0",
+    "prettier": "^3.6.0",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.35.0",
+    "undici": "^7.11.0",
+    "vitest": "^3.2.0"
+  }
+}

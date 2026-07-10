@@ -1,0 +1,10 @@
+dist/
+coverage/
+node_modules/
+src/api/types.gen.ts
+artificial-analysis-openapi.yaml
+package-lock.json
+SPEC.md
+AGENTS.md
+docs/
+.github/
