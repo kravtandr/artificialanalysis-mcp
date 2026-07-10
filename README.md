@@ -58,18 +58,28 @@ Add to `claude_desktop_config.json`:
 }
 ```
 
-### Docker (Streamable HTTP)
+### Docker Compose (Streamable HTTP, built from source)
+
+No pre-built image is published — the container is built from source on your
+server:
 
 ```bash
-docker run -d --name aa-mcp \
-  -e ARTIFICIAL_ANALYSIS_API_KEY=your-key-here \
-  -e MCP_AUTH_TOKEN=$(openssl rand -hex 24) \
-  -p 127.0.0.1:3000:3000 \
-  ghcr.io/kravtandr/artificialanalysis-mcp:latest
+git clone https://github.com/kravtandr/artificialanalysis-mcp.git
+cd artificialanalysis-mcp
+cp .env.example .env
+# edit .env: set ARTIFICIAL_ANALYSIS_API_KEY and MCP_AUTH_TOKEN
+docker compose up -d --build
 ```
 
-The MCP endpoint is `POST http://127.0.0.1:3000/mcp`; health check at
-`GET /healthz`.
+The MCP endpoint is `POST http://127.0.0.1:3000/mcp` (Bearer auth with your
+`MCP_AUTH_TOKEN`); health check at `GET /healthz`. Set `MCP_PORT` in `.env` to
+use a different host port.
+
+To update after pulling new code:
+
+```bash
+git pull && docker compose up -d --build
+```
 
 > ⚠️ **Never expose the HTTP mode publicly without `MCP_AUTH_TOKEN`.** Anyone
 > who can reach the port can spend your daily API quota. The server binds to
