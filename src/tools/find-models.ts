@@ -2,7 +2,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import type { AppContext } from '../context.js';
 import { finishText, fmtNum, fmtUsd, mdTable } from '../format.js';
-import { defaultOrder, filterLlm, sortLlm, type LlmFilters } from '../match.js';
+import { defaultOrder, filterLlm, sortLlm } from '../match.js';
 import { catalogWarnings, guardToolErrors, llmModelOutputSchema, toLlmOutput } from './common.js';
 
 const inputSchema = {
@@ -114,11 +114,7 @@ export function registerFindModels(server: McpServer, ctx: AppContext): void {
       guardToolErrors(async () => {
         const { sort_by, order, limit, ...filters } = args;
         const catalog = await ctx.catalog.getLlm();
-        const { matched, unsupportedFilters } = filterLlm(
-          catalog.models,
-          filters as LlmFilters,
-          catalog.tier,
-        );
+        const { matched, unsupportedFilters } = filterLlm(catalog.models, filters, catalog.tier);
         const sorted = sortLlm(matched, sort_by, order);
         const top = sorted.slice(0, limit);
 
