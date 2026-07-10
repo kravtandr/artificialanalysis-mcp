@@ -1,5 +1,7 @@
 # artificialanalysis-mcp
 
+[![CI](https://github.com/kravtandr/artificialanalysis-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/kravtandr/artificialanalysis-mcp/actions/workflows/ci.yml)
+
 **Unofficial** [MCP](https://modelcontextprotocol.io) server for the
 [Artificial Analysis Data API v2](https://artificialanalysis.ai/data-api/docs).
 Lets AI agents (Claude Desktop, Claude Code, Cursor, …) find, compare and rank
