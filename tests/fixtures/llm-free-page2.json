@@ -1,0 +1,91 @@
+{
+  "tier": "free",
+  "intelligence_index_version": 4.1,
+  "pagination": { "page": 2, "page_size": 3, "total_pages": 2, "has_more": false },
+  "data": [
+    {
+      "id": "b1c2d3e4-0000-4000-8000-000000000004",
+      "name": "Claude Sonnet 5",
+      "slug": "claude-sonnet-5",
+      "release_date": "2025-09-29",
+      "model_creator": { "id": "c1000000-0000-4000-8000-000000000004", "name": "Anthropic" },
+      "evaluations": {
+        "artificial_analysis_intelligence_index": 63.1,
+        "artificial_analysis_coding_index": 55.4,
+        "artificial_analysis_agentic_index": 61.2
+      },
+      "artificial_analysis_intelligence_index_cost": {
+        "total_cost": 312.4,
+        "cost_per_task": { "total_cost": 2.53 }
+      },
+      "pricing": {
+        "price_1m_input_tokens": 3,
+        "price_1m_output_tokens": 15,
+        "price_1m_cache_hit_tokens": 0.3,
+        "price_1m_cache_write_tokens": 3.75
+      },
+      "performance": {
+        "median_output_tokens_per_second": 82.3,
+        "median_time_to_first_token_seconds": 1.42,
+        "median_time_to_first_answer_token_seconds": 12.1,
+        "median_end_to_end_response_time_seconds": 21.3
+      }
+    },
+    {
+      "id": "b1c2d3e4-0000-4000-8000-000000000005",
+      "name": "DeepSeek V4",
+      "slug": "deepseek-v4",
+      "release_date": "2025-12-01",
+      "model_creator": { "id": "c1000000-0000-4000-8000-000000000005", "name": "DeepSeek" },
+      "evaluations": {
+        "artificial_analysis_intelligence_index": 57.9,
+        "artificial_analysis_coding_index": 51.2,
+        "artificial_analysis_agentic_index": 50.3
+      },
+      "artificial_analysis_intelligence_index_cost": {
+        "total_cost": 45.1,
+        "cost_per_task": { "total_cost": 0.37 }
+      },
+      "pricing": {
+        "price_1m_input_tokens": 0.28,
+        "price_1m_output_tokens": 1.1,
+        "price_1m_cache_hit_tokens": 0.028,
+        "price_1m_cache_write_tokens": null
+      },
+      "performance": {
+        "median_output_tokens_per_second": 60.1,
+        "median_time_to_first_token_seconds": 2.9,
+        "median_time_to_first_answer_token_seconds": 18.4,
+        "median_end_to_end_response_time_seconds": 35.2
+      }
+    },
+    {
+      "id": "b1c2d3e4-0000-4000-8000-000000000006",
+      "name": "gpt-oss-120B (high)",
+      "slug": "gpt-oss-120b",
+      "release_date": "2025-08-05",
+      "model_creator": { "id": "e67e56e3-15cd-43db-b679-da4660a69f41", "name": "OpenAI" },
+      "evaluations": {
+        "artificial_analysis_intelligence_index": 38.7,
+        "artificial_analysis_coding_index": 32.1,
+        "artificial_analysis_agentic_index": 36.4
+      },
+      "artificial_analysis_intelligence_index_cost": {
+        "total_cost": 39.2,
+        "cost_per_task": { "total_cost": 0.32 }
+      },
+      "pricing": {
+        "price_1m_input_tokens": 0.15,
+        "price_1m_output_tokens": 0.6,
+        "price_1m_cache_hit_tokens": null,
+        "price_1m_cache_write_tokens": null
+      },
+      "performance": {
+        "median_output_tokens_per_second": 214.9,
+        "median_time_to_first_token_seconds": 0.51,
+        "median_time_to_first_answer_token_seconds": 5.2,
+        "median_end_to_end_response_time_seconds": 8.4
+      }
+    }
+  ]
+}

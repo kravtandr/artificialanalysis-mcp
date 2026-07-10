@@ -1,0 +1,32 @@
+{
+  "tier": "free",
+  "data": [
+    {
+      "id": "m1000000-0000-4000-8000-000000000001",
+      "name": "Imagen 4 Ultra",
+      "slug": "imagen-4-ultra",
+      "model_creator": { "id": "c2000000-0000-4000-8000-000000000001", "name": "Google" },
+      "elo": 1152.3,
+      "ci_95": 6.1
+    },
+    {
+      "id": "m1000000-0000-4000-8000-000000000002",
+      "name": "FLUX.2 [pro]",
+      "slug": "flux-2-pro",
+      "model_creator": {
+        "id": "c2000000-0000-4000-8000-000000000002",
+        "name": "Black Forest Labs"
+      },
+      "elo": 1120.7,
+      "ci_95": null
+    },
+    {
+      "id": "m1000000-0000-4000-8000-000000000003",
+      "name": "GPT Image 2",
+      "slug": "gpt-image-2",
+      "model_creator": { "id": "e67e56e3-15cd-43db-b679-da4660a69f41", "name": "OpenAI" },
+      "elo": 1189.9,
+      "ci_95": 4.8
+    }
+  ]
+}

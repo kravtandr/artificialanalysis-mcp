@@ -1,0 +1,32 @@
+{
+  "tier": "free",
+  "data": [
+    {
+      "id": "m2000000-0000-4000-8000-000000000001",
+      "name": "GPT Realtime",
+      "slug": "gpt-realtime",
+      "model_creator": { "id": "e67e56e3-15cd-43db-b679-da4660a69f41", "name": "OpenAI" },
+      "bba_score": 0.82,
+      "fdb_score": 0.61,
+      "tau_voice_score": 0.44
+    },
+    {
+      "id": "m2000000-0000-4000-8000-000000000002",
+      "name": "Gemini Live",
+      "slug": "gemini-live",
+      "model_creator": { "id": "c2000000-0000-4000-8000-000000000001", "name": "Google" },
+      "bba_score": 0.79,
+      "fdb_score": null,
+      "tau_voice_score": null
+    },
+    {
+      "id": "m2000000-0000-4000-8000-000000000003",
+      "name": "Voice Mystery",
+      "slug": "voice-mystery",
+      "model_creator": { "id": "c2000000-0000-4000-8000-000000000009", "name": "Acme AI" },
+      "bba_score": null,
+      "fdb_score": null,
+      "tau_voice_score": null
+    }
+  ]
+}

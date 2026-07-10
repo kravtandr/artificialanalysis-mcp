@@ -1,0 +1,85 @@
+{
+  "tier": "free",
+  "intelligence_index_version": 4.1,
+  "pagination": { "page": 1, "page_size": 3, "total_pages": 2, "has_more": true },
+  "data": [
+    {
+      "id": "36f73aaf-d38a-4b56-a2b3-d04d17186910",
+      "name": "gpt-oss-20B (high)",
+      "slug": "gpt-oss-20b",
+      "release_date": "2025-08-05",
+      "model_creator": { "id": "e67e56e3-15cd-43db-b679-da4660a69f41", "name": "OpenAI" },
+      "evaluations": {
+        "artificial_analysis_intelligence_index": 24.5,
+        "artificial_analysis_coding_index": 18.5,
+        "artificial_analysis_agentic_index": 27.6
+      },
+      "artificial_analysis_intelligence_index_cost": {
+        "total_cost": 20.69,
+        "cost_per_task": { "total_cost": 0.1678 }
+      },
+      "pricing": {
+        "price_1m_input_tokens": 0.06,
+        "price_1m_output_tokens": 0.2,
+        "price_1m_cache_hit_tokens": 0.015,
+        "price_1m_cache_write_tokens": 0.075
+      },
+      "performance": {
+        "median_output_tokens_per_second": 296.47,
+        "median_time_to_first_token_seconds": 0.65,
+        "median_time_to_first_answer_token_seconds": 7.4,
+        "median_end_to_end_response_time_seconds": 9.09
+      }
+    },
+    {
+      "id": "b1c2d3e4-0000-4000-8000-000000000002",
+      "name": "Llama 4 Scout",
+      "slug": "llama-4-scout",
+      "release_date": "2025-04-05",
+      "model_creator": { "id": "c1000000-0000-4000-8000-000000000002", "name": "Meta" },
+      "evaluations": {
+        "artificial_analysis_intelligence_index": 28.0,
+        "artificial_analysis_coding_index": null,
+        "artificial_analysis_agentic_index": 20.1
+      },
+      "artificial_analysis_intelligence_index_cost": null,
+      "pricing": {
+        "price_1m_input_tokens": 0.15,
+        "price_1m_output_tokens": 0.5,
+        "price_1m_cache_hit_tokens": null,
+        "price_1m_cache_write_tokens": null
+      },
+      "performance": {
+        "median_output_tokens_per_second": 120.5,
+        "median_time_to_first_token_seconds": 0.35,
+        "median_time_to_first_answer_token_seconds": 0.35,
+        "median_end_to_end_response_time_seconds": 7.5
+      }
+    },
+    {
+      "id": "b1c2d3e4-0000-4000-8000-000000000003",
+      "name": "Kimi K2",
+      "slug": "kimi-k2",
+      "release_date": null,
+      "model_creator": { "id": "c1000000-0000-4000-8000-000000000003", "name": "Moonshot AI" },
+      "evaluations": {
+        "artificial_analysis_intelligence_index": 45.2,
+        "artificial_analysis_coding_index": 39.8,
+        "artificial_analysis_agentic_index": 41.0
+      },
+      "artificial_analysis_intelligence_index_cost": null,
+      "pricing": {
+        "price_1m_input_tokens": null,
+        "price_1m_output_tokens": null,
+        "price_1m_cache_hit_tokens": null,
+        "price_1m_cache_write_tokens": null
+      },
+      "performance": {
+        "median_output_tokens_per_second": null,
+        "median_time_to_first_token_seconds": null,
+        "median_time_to_first_answer_token_seconds": null,
+        "median_end_to_end_response_time_seconds": null
+      }
+    }
+  ]
+}

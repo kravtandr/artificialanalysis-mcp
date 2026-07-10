@@ -1,0 +1,77 @@
+{
+  "tier": "commercial",
+  "intelligence_index_version": 4.1,
+  "data": {
+    "id": "36f73aaf-d38a-4b56-a2b3-d04d17186910",
+    "name": "gpt-oss-20B (high)",
+    "slug": "gpt-oss-20b",
+    "release_date": "2025-08-05",
+    "model_creator": {
+      "id": "e67e56e3-15cd-43db-b679-da4660a69f41",
+      "name": "OpenAI",
+      "country": "us"
+    },
+    "reasoning_model": true,
+    "evaluations": {
+      "artificial_analysis_intelligence_index": 24.5,
+      "artificial_analysis_coding_index": 18.5,
+      "artificial_analysis_agentic_index": 27.6,
+      "gpqa_diamond": 0.69
+    },
+    "artificial_analysis_intelligence_index_cost": {
+      "total_cost": 20.69,
+      "cost_per_task": { "total_cost": 0.1678 }
+    },
+    "pricing": {
+      "price_1m_blended_3_to_1": 0.09,
+      "price_1m_blended_7_to_2_to_1": 0.04,
+      "price_1m_input_tokens": 0.06,
+      "price_1m_output_tokens": 0.2,
+      "price_1m_cache_hit_tokens": 0.015,
+      "price_1m_cache_write_tokens": 0.075
+    },
+    "performance": {
+      "percentile_05_output_tokens_per_second": 74.74,
+      "quartile_25_output_tokens_per_second": 164.57,
+      "median_output_tokens_per_second": 296.47,
+      "quartile_75_output_tokens_per_second": 405.84,
+      "percentile_95_output_tokens_per_second": 858.3,
+      "percentile_05_time_to_first_token_seconds": 0.28,
+      "quartile_25_time_to_first_token_seconds": 0.4,
+      "median_time_to_first_token_seconds": 0.65,
+      "quartile_75_time_to_first_token_seconds": 0.97,
+      "percentile_95_time_to_first_token_seconds": 16.22,
+      "median_time_to_first_answer_token_seconds": 7.4,
+      "median_end_to_end_response_time_seconds": 9.09
+    },
+    "context_window_tokens": 131072,
+    "parameters": { "total": 21, "active": 4 },
+    "modalities": {
+      "input": { "text": true, "image": false, "video": false, "speech": false },
+      "output": { "text": true, "image": false, "video": false, "speech": false }
+    },
+    "licensing": { "is_open_weights": true },
+    "huggingface_url": "https://huggingface.co/openai/gpt-oss-20b",
+    "openrouter_api_id": "openai/gpt-oss-20b",
+    "providers": [
+      {
+        "id": "p1000000-0000-4000-8000-000000000001",
+        "name": "Groq",
+        "slug": "groq",
+        "pricing": {
+          "price_1m_blended_3_to_1": 0.11,
+          "price_1m_blended_7_to_2_to_1": null,
+          "price_1m_input_tokens": 0.1,
+          "price_1m_output_tokens": 0.5,
+          "price_1m_cache_hit_tokens": null,
+          "price_1m_cache_write_tokens": null
+        },
+        "performance": {
+          "median_output_tokens_per_second": 1002.4,
+          "median_time_to_first_token_seconds": 0.21
+        },
+        "context_window_tokens": 131072
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "tier": "free",
+  "data": [
+    {
+      "id": "m3000000-0000-4000-8000-000000000001",
+      "name": "Whisper Large v4",
+      "model_creator": { "id": "e67e56e3-15cd-43db-b679-da4660a69f41", "name": "OpenAI" },
+      "aa_wer_index": 8.4
+    },
+    {
+      "id": "m3000000-0000-4000-8000-000000000002",
+      "name": "Universal-3",
+      "model_creator": { "id": "c3000000-0000-4000-8000-000000000002", "name": "AssemblyAI" },
+      "aa_wer_index": 6.9
+    },
+    {
+      "id": "m3000000-0000-4000-8000-000000000003",
+      "name": "Scribe Unmeasured",
+      "model_creator": { "id": "c3000000-0000-4000-8000-000000000003", "name": "Acme AI" },
+      "aa_wer_index": null
+    }
+  ]
+}

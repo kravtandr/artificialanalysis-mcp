@@ -1,0 +1,21 @@
+{
+  "tier": "free",
+  "data": [
+    {
+      "id": "m5000000-0000-4000-8000-000000000001",
+      "name": "Eleven v4",
+      "slug": "eleven-v4",
+      "model_creator": { "id": "c5000000-0000-4000-8000-000000000001", "name": "ElevenLabs" },
+      "elo": 1098.4,
+      "ci_95": 5.5
+    },
+    {
+      "id": "m5000000-0000-4000-8000-000000000002",
+      "name": "Cartesia Sonic 3",
+      "slug": "cartesia-sonic-3",
+      "model_creator": { "id": "c5000000-0000-4000-8000-000000000002", "name": "Cartesia" },
+      "elo": 1121.9,
+      "ci_95": 7.0
+    }
+  ]
+}
