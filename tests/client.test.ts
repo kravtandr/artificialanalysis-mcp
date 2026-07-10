@@ -135,6 +135,32 @@ describe('AAClient routing', () => {
   });
 });
 
+describe('AAClient routing edge cases', () => {
+  it('requests /free without a page param when none is given (seed already consumed)', async () => {
+    const agent = makeAgent();
+    agent
+      .get(BASE)
+      .intercept({ path: '/api/v2/language/models/free', method: 'GET' })
+      .reply(200, { ok: 1 }, { headers: jsonHeaders() });
+    const client = makeClient(agent, { tierOverride: 'free' });
+    await expect(client.getCategoryPage('llm')).resolves.toEqual({ ok: 1 });
+  });
+
+  it('keeps the page param through the 403 fallback for paginated categories', async () => {
+    const agent = makeAgent();
+    agent
+      .get(BASE)
+      .intercept({ path: '/api/v2/language/models', query: { page: '2' }, method: 'GET' })
+      .reply(403, {}, { headers: jsonHeaders() });
+    agent
+      .get(BASE)
+      .intercept({ path: '/api/v2/language/models/free', query: { page: '2' }, method: 'GET' })
+      .reply(200, { page: 2 }, { headers: jsonHeaders() });
+    const client = makeClient(agent, { tierOverride: 'pro' });
+    await expect(client.getCategoryPage('llm', 2)).resolves.toEqual({ page: 2 });
+  });
+});
+
 describe('AAClient error classification', () => {
   it('maps 401 to an auth error mentioning the env var but never the key', async () => {
     const agent = makeAgent();
@@ -158,6 +184,46 @@ describe('AAClient error classification', () => {
     expect(error.kind).toBe('rate_limited');
     expect(error.resetAt).toEqual(new Date(1767100800 * 1000));
     expect(error.message).toContain('resets at');
+  });
+
+  it('maps 429 without reset headers and falls back to Retry-After when present', async () => {
+    const agent = makeAgent();
+    agent.get(BASE).intercept({ path: '/bare', method: 'GET' }).reply(429, {});
+    const client = makeClient(agent);
+    const bare = (await client.getJson('/bare').catch((e: unknown) => e)) as AAApiError;
+    expect(bare.kind).toBe('rate_limited');
+    expect(bare.resetAt).toBeUndefined();
+    expect(bare.message).not.toContain('resets at');
+
+    agent
+      .get(BASE)
+      .intercept({ path: '/retry-after', method: 'GET' })
+      .reply(429, {}, { headers: { 'retry-after': '120' } });
+    const before = Date.now();
+    const viaRetry = (await client.getJson('/retry-after').catch((e: unknown) => e)) as AAApiError;
+    expect(viaRetry.resetAt!.getTime()).toBeGreaterThanOrEqual(before + 119_000);
+  });
+
+  it('maps other unexpected 4xx to server_error without retry', async () => {
+    const agent = makeAgent();
+    agent.get(BASE).intercept({ path: '/x', method: 'GET' }).reply(418, {});
+    const client = makeClient(agent);
+    const error = (await client.getJson('/x').catch((e: unknown) => e)) as AAApiError;
+    expect(error.kind).toBe('server_error');
+    expect(error.message).toContain('418');
+  });
+
+  it('treats an invalid JSON body as a retryable network error', async () => {
+    const agent = makeAgent();
+    agent
+      .get(BASE)
+      .intercept({ path: '/x', method: 'GET' })
+      .reply(200, 'not-json{', { headers: { 'content-type': 'application/json' } })
+      .times(2);
+    const client = makeClient(agent);
+    const error = (await client.getJson('/x').catch((e: unknown) => e)) as AAApiError;
+    expect(error.kind).toBe('network');
+    expect(error.message).toContain('Invalid JSON');
   });
 
   it('maps 404 to not_found without retrying', async () => {

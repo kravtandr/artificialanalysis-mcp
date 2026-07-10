@@ -70,6 +70,8 @@ const models: NormalizedLlmModel[] = [
     name: 'Claude Sonnet 5',
     creator: 'Anthropic',
     intelligence_index: 63.1,
+    coding_index: 55.4,
+    agentic_index: 61.2,
     price_1m_input: 3,
     price_1m_output: 15,
     median_output_tps: 82.3,
@@ -126,6 +128,36 @@ describe('filterLlm', () => {
     ]);
   });
 
+  it('covers every numeric threshold filter', () => {
+    expect(filterLlm(models, { min_coding_index: 50 }, 'free').matched.map((m) => m.slug)).toEqual([
+      'claude-sonnet-5',
+    ]);
+    expect(filterLlm(models, { min_agentic_index: 60 }, 'free').matched).toHaveLength(1);
+    expect(filterLlm(models, { max_price_output_per_1m: 0.6 }, 'free').matched).toHaveLength(2);
+    expect(
+      filterLlm(models, { max_time_to_first_token_seconds: 0.6 }, 'free').matched.map(
+        (m) => m.slug,
+      ),
+    ).toEqual(['gpt-oss-120b']);
+  });
+
+  it('handles models with a null creator in query and creators filters', () => {
+    const anon = [model({ slug: 'anon-1', name: 'Anon One', creator: null })];
+    expect(filterLlm(anon, { creators: ['OpenAI'] }, 'free').matched).toHaveLength(0);
+    expect(filterLlm(anon, { query: 'anon' }, 'free').matched).toHaveLength(1);
+  });
+
+  it('applies open_weights_only and min_context_window_tokens on pro tier', () => {
+    const { matched } = filterLlm(models, { open_weights_only: true }, 'pro');
+    // ни у одной модели is_open_weights !== true → пусто
+    expect(matched).toHaveLength(0);
+    const cw = filterLlm(models, { min_context_window_tokens: 100000 }, 'pro').matched;
+    expect(cw.map((m) => m.slug)).toEqual(['claude-sonnet-5']);
+    // input_modalities: модель без поля (undefined) не проходит
+    const im = filterLlm(models, { input_modalities: ['image'] }, 'pro').matched;
+    expect(im.map((m) => m.slug)).toEqual(['claude-sonnet-5']);
+  });
+
   it('applies pro filters on pro tier', () => {
     const { matched, unsupportedFilters } = filterLlm(
       models,
@@ -161,6 +193,16 @@ describe('sortLlm', () => {
       'gpt-oss-20b',
       'kimi-k2',
     ]);
+  });
+
+  it('sorts by every remaining key', () => {
+    expect(sortLlm(models, 'coding_index')[0]!.slug).toBe('claude-sonnet-5');
+    expect(sortLlm(models, 'agentic_index')[0]!.slug).toBe('claude-sonnet-5');
+    expect(sortLlm(models, 'price_output')[0]!.slug).toBe('gpt-oss-20b');
+    expect(sortLlm(models, 'output_speed')[0]!.slug).toBe('gpt-oss-20b');
+    expect(sortLlm(models, 'ttft')[0]!.slug).toBe('gpt-oss-120b');
+    // null-ключ уходит в конец и когда null у второго аргумента компаратора
+    expect(sortLlm([...models].reverse(), 'price_input', 'desc').at(-1)!.slug).toBe('kimi-k2');
   });
 
   it('sorts by release_date with nulls last', () => {
@@ -274,5 +316,13 @@ describe('media filtering and sorting', () => {
     expect(filterMedia(media, 'assembly')).toHaveLength(1);
     expect(filterMedia(media, 'whisper')[0]!.id).toBe('1');
     expect(filterMedia(media)).toHaveLength(3);
+  });
+
+  it('matches media by slug and handles a null creator', () => {
+    const withSlug: NormalizedMediaModel[] = [
+      { ...media[0]!, slug: 'whisper-large-v4', creator: null },
+    ];
+    expect(filterMedia(withSlug, 'whisper-large')).toHaveLength(1);
+    expect(filterMedia(withSlug, 'nomatch')).toHaveLength(0);
   });
 });
