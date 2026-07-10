@@ -68,6 +68,17 @@ export class TtlCache {
     }
   }
 
+  /** Читает запись без загрузки и без учёта TTL-протухания (для диагностики). */
+  peek<T>(key: string): CacheResult<T> | undefined {
+    const entry = this.entries.get(key);
+    if (!entry) return undefined;
+    return {
+      value: entry.value as T,
+      dataAsOf: new Date(entry.fetchedAt),
+      stale: !this.isFresh(entry),
+    };
+  }
+
   inspect(): Array<{ key: string; ageSeconds: number; stale: boolean }> {
     return [...this.entries.entries()].map(([key, entry]) => ({
       key,

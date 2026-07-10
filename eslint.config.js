@@ -18,6 +18,7 @@ export default tseslint.config(
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true }],
       // stdout принадлежит протоколу MCP в stdio-режиме — логи только в stderr
       'no-console': ['error', { allow: ['error'] }],
       '@typescript-eslint/consistent-type-imports': 'error',

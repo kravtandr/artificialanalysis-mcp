@@ -124,6 +124,15 @@ describe('TtlCache', () => {
     expect(calls).toBe(2);
   });
 
+  it('peek() reads an entry without loading, or undefined when missing', async () => {
+    let now = 0;
+    const cache = new TtlCache(60, () => now);
+    expect(cache.peek('k')).toBeUndefined();
+    await cache.getOrLoad('k', () => Promise.resolve('v'), staleNever);
+    now = 90_000;
+    expect(cache.peek('k')).toMatchObject({ value: 'v', stale: true });
+  });
+
   it('inspect() reports keys, age and staleness without deleting entries', async () => {
     let now = 0;
     const cache = new TtlCache(60, () => now);
