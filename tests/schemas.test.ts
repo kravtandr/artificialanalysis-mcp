@@ -1,5 +1,5 @@
-import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { fixture } from './helpers.js';
 import {
   llmDetailResponseSchema,
   llmListResponseSchema,
@@ -10,10 +10,6 @@ import {
   sttItemSchema,
   ttsItemSchema,
 } from '../src/api/schemas.js';
-
-export function fixture(name: string): unknown {
-  return JSON.parse(readFileSync(new URL(`./fixtures/${name}.json`, import.meta.url), 'utf8'));
-}
 
 describe('llmListResponseSchema', () => {
   it('parses the free shape, preserving null vs value', () => {
